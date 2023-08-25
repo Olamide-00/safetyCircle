@@ -1,26 +1,34 @@
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import * as Animatable from 'react-native-animatable'
 
 
-
-export default function OnBoarding() {
+export default function OnBoarding({ navigation }) {
     return (
-        <View style={styles.root}>
-            <Image 
+        <Animatable.View 
+        animation="slideInDown"
+        style={styles.root}>
+            <Animatable.Image 
+                animation="slideInDown"
                 source={require('../assets/welcome2.jpg')} 
                 style={styles.img}
             />
             <View style={styles.welcomeMainContainer}>
                 <View style={styles.welcomeContainer}> 
-                    <Text style={styles.welcome}>Welcome to</Text>
-                    <View style={styles.saftyCircle}> 
+                    <Animatable.Text animation="slideInLeft" delay={200} style={styles.welcome}>Welcome to</Animatable.Text>
+                    <Animatable.View animation="slideInRight" delay={200} style={styles.saftyCircle}> 
                         <Text style={styles.saftyCircleText}>SaftyCircle</Text>
-                    </View>
+                    </Animatable.View>
                 </View>
-                <View style={styles.priorityContainer}>
+                <Animatable.View animation="lightSpeedIn" style={styles.priorityContainer}>
                     <Text  style={styles.safty}>Your safty, <Text style={styles.priority}>Our Priority</Text></Text>
-                </View>
+                </Animatable.View>
             </View>
-        </View>
+            <TouchableOpacity style={styles.nextContainer} onPress={() => navigation.navigate("GetStarted")}>
+                <Animatable.Text animation="slideInLeft" style={styles.nextText}>
+                    Next
+                </Animatable.Text>
+            </TouchableOpacity>
+        </Animatable.View>
     )
 }
 
@@ -73,5 +81,20 @@ const styles = StyleSheet.create({
     priority: {
         color: "#007bff",
         fontWeight: "900"
+    },
+    nextContainer: {
+        backgroundColor: "#007bff",
+        paddingHorizontal: "5%",
+        paddingVertical: "3%",
+        borderRadius: 8,
+        position: "absolute",
+        bottom: 10,
+        right: 15 ,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    nextText: {
+        color: "#fff",
+        fontWeight: "700"
     }
 })

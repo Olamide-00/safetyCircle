@@ -2,7 +2,8 @@ import { View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import OnBoarding from "../screens/onBoarding";
-
+import GetStarted from "../screens/GetStarted";
+import Login from "../screens/Login";
 
 
 
@@ -17,6 +18,8 @@ export default function Navigation() {
                 headerShown: false
             }}>
                 <Stack.Screen name="OnBoarding" component={OnBoarding} />
+                <Stack.Screen name="GetStarted" component={GetStarted} />
+                <Stack.Screen name="Login" component={Login} />
             </Stack.Navigator>
         </NavigationContainer>
     )
