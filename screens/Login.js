@@ -5,7 +5,7 @@ import * as Animatable from 'react-native-animatable'
 
 
 
-export default function Login() {
+export default function Login({ navigation }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     return (
@@ -49,7 +49,7 @@ export default function Login() {
                     </View>
                 </View>
             </View>
-            <TouchableOpacity style={styles.signUpContainer}>
+            <TouchableOpacity style={styles.signUpContainer} onPress={() => navigation.navigate("SignUp")}>
                 <Animatable.Text animation="slideInRight" style={styles.signUpText}>
                     Sign up
                 </Animatable.Text>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         flexDirection: "row",
-        marginVertical: "4%",
+        marginVertical: "3%",
         paddingVertical: "5%",
         borderWidth: 1,
         borderColor: "#ff5710",

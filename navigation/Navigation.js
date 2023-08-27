@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import OnBoarding from "../screens/onBoarding";
 import GetStarted from "../screens/GetStarted";
 import Login from "../screens/Login";
+import SignUp from "../screens/signUp";
 
 
 
@@ -20,6 +21,7 @@ export default function Navigation() {
                 <Stack.Screen name="OnBoarding" component={OnBoarding} />
                 <Stack.Screen name="GetStarted" component={GetStarted} />
                 <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="SignUp" component={SignUp} />
             </Stack.Navigator>
         </NavigationContainer>
     )
