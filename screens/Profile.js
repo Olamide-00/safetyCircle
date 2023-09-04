@@ -1,0 +1,12 @@
+import { StyleSheet, View, Text } from "react-native";
+
+
+
+export default function Profile () {
+    return (
+        <View>
+            <Text>Profile page</Text>
+            <Text>profile page</Text>
+        </View>
+    )
+}

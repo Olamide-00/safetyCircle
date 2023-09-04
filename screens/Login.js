@@ -1,5 +1,13 @@
 import { useState } from "react";
-import { StyleSheet, View, Text, TextInput, TouchableOpacity } from "react-native";
+import { StyleSheet,
+     View, 
+     Text, 
+     TextInput, 
+     TouchableOpacity, 
+     Keyboard, 
+     TouchableWithoutFeedback, 
+     KeyboardAvoidingView, 
+     Platform } from "react-native";
 import {Zocial, Entypo} from '@expo/vector-icons';
 import * as Animatable from 'react-native-animatable'
 
@@ -9,52 +17,56 @@ export default function Login({ navigation }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     return (
-        <View style={styles.root}>
-            <View>
-                <View style={styles.textContainer}>
-                    <View style={styles.saftyCircleContainer}>
-                        <Animatable.Text animation="slideInLeft" style={styles.text1}>Welcome back to </Animatable.Text>
-                        <View style={styles.safty}>
-                            <Animatable.Text animation="slideInRight" style={styles.saftyCircle}>SaftyCircle</Animatable.Text>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <View style={styles.root}>
+                <View>
+                    <View style={styles.textContainer}>
+                        <View style={styles.saftyCircleContainer}>
+                            <Animatable.Text animation="slideInLeft" style={styles.text1}>Welcome back to </Animatable.Text>
+                            <View style={styles.safty}>
+                                <Animatable.Text animation="slideInRight" style={styles.saftyCircle}>SaftyCircle</Animatable.Text>
+                            </View>
+                        </View>
+                        <Animatable.Text animation="zoomIn" delay={700} style={styles.text2}>Your're never alone in an emergency</Animatable.Text>
+                    </View>
+                    <View>
+                        <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "paddingBottom" : "height" } style={styles.keyboard} >
+                            <Animatable.View animation="slideInLeft" style={styles.inputContainer}>
+                                <Zocial name="email" size={25} color= "#007bff"  style={styles.icon}/>
+                                <TextInput
+                                    placeholder="Enter your email"
+                                    onChangeText={() => setEmail}
+                                    placeholderTextColor="#007bff"
+                                    style={styles.input}   
+                                    maxLength={30}              
+                                />
+                            </Animatable.View>
+                            <Animatable.View animation="slideInRight" style={styles.inputContainer}>
+                                <Entypo name="lock" size={25} color= "#007bff" style={styles.icon}/>
+                                <TextInput
+                                    placeholder="Enter your password"
+                                    onChangeText={() => setEmail}
+                                    placeholderTextColor="#007bff"
+                                    style={styles.input}
+                                    maxLength={15}
+                                    secureTextEntry
+                                />
+                            </Animatable.View>
+                        </KeyboardAvoidingView>
+                        <View style={styles.loginMainContainer}>
+                            <TouchableOpacity  style={styles.loginContainer} onPress={() => navigation.navigate("Home")}>
+                                <Animatable.Text animation="slideInUp" style={styles.loginText}>Log In</Animatable.Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
-                    <Animatable.Text animation="zoomIn" delay={700} style={styles.text2}>Your're never alone in an emergency</Animatable.Text>
                 </View>
-                <View>
-                    <Animatable.View animation="slideInLeft" style={styles.inputContainer}>
-                        <Zocial name="email" size={25} color= "#007bff"  style={styles.icon}/>
-                        <TextInput
-                            placeholder="Enter your email"
-                            onChangeText={() => setEmail}
-                            placeholderTextColor="#007bff"
-                            style={styles.input}   
-                            maxLength={30}              
-                        />
-                    </Animatable.View>
-                    <Animatable.View animation="slideInRight" style={styles.inputContainer}>
-                        <Entypo name="lock" size={25} color= "#007bff" style={styles.icon}/>
-                        <TextInput
-                            placeholder="Enter your password"
-                            onChangeText={() => setEmail}
-                            placeholderTextColor="#007bff"
-                            style={styles.input}
-                            maxLength={15}
-                            secureTextEntry
-                        />
-                    </Animatable.View>
-                    <View style={styles.loginMainContainer}>
-                        <TouchableOpacity  style={styles.loginContainer}>
-                            <Text style={styles.loginText}>Login In</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                <TouchableOpacity style={styles.signUpContainer} onPress={() => navigation.navigate("SignUp")}>
+                    <Animatable.Text animation="slideInRight" style={styles.signUpText}>
+                        Sign up
+                    </Animatable.Text>
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.signUpContainer} onPress={() => navigation.navigate("SignUp")}>
-                <Animatable.Text animation="slideInRight" style={styles.signUpText}>
-                    Sign up
-                </Animatable.Text>
-            </TouchableOpacity>
-        </View>
+        </TouchableWithoutFeedback>
     )
 }
 
@@ -108,7 +120,7 @@ const styles = StyleSheet.create({
         marginRight: "10%"
     },
     input: {
-        fontSize: 18
+        fontSize: 16
     },
     loginMainContainer: {
         justifyContent: "center",
@@ -141,5 +153,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "600",
         color: "#f5f5f5"
-    }
+    },
+   keyboard: {
+        paddingBottom: "6%"
+   }
 })

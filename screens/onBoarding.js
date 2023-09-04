@@ -20,7 +20,7 @@ export default function OnBoarding({ navigation }) {
                     </Animatable.View>
                 </View>
                 <Animatable.View animation="lightSpeedIn" style={styles.priorityContainer}>
-                    <Text  style={styles.safty}>Your safty, <Text style={styles.priority}>Our Priority</Text></Text>
+                    <Text  style={styles.safty}>Your safety, <Text style={styles.priority}>Our Priority</Text></Text>
                 </Animatable.View>
             </View>
             <TouchableOpacity style={styles.nextContainer} onPress={() => navigation.navigate("GetStarted")}>
